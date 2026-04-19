@@ -1,9 +1,9 @@
-from textnode import TextNode
+from textnode import TextNode, TextType
 
 print('hello world')
 
 def main():
-    text_node = TextNode("On the Nature of Daylight", "text", "https://en.wikipedia.org/wiki/On_the_Nature_of_Daylight")
+    text_node = TextNode("On the Nature of Daylight", TextType.LINK, "https://en.wikipedia.org/wiki/On_the_Nature_of_Daylight")
     print(text_node)
 
 main()
