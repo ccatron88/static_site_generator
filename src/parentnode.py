@@ -17,5 +17,5 @@ class ParentNode(HTMLNode):
             for child in self.children:
                 child_string += f"<{child.tag} {child.props}>{child.value}</{child.tag}>"
             full_string += f"<{self.tag} {self.props}>{child_string}</{self.tag}>"
-            return full_string
+            # return full_string
         
