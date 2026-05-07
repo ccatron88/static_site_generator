@@ -11,11 +11,11 @@ class ParentNode(HTMLNode):
         if self.children is None:
             raise ValueError('a parent node must have children')
         
-        full_string = ''
-        child_string = ''
+        # full_string = ''
+        # child_string = ''
         if self.children:
             for child in self.children:
                 child_string += f"<{child.tag} {child.props}>{child.value}</{child.tag}>"
             full_string += f"<{self.tag} {self.props}>{child_string}</{self.tag}>"
-            # return full_string
+            return full_string
         
