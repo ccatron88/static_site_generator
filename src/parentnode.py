@@ -1,5 +1,5 @@
 from htmlnode import *
-from leafnode import LeafNode
+# from leafnode import LeafNode
 
 class ParentNode(HTMLNode):
     def __init__(self, tag, children, props=None):
@@ -12,7 +12,7 @@ class ParentNode(HTMLNode):
             raise ValueError('a parent node must have children')
         
         full_string = ''
-        # child_string = ''
+        child_string = ''
         if self.children:
             for child in self.children:
                 child_string += f"<{child.tag} {child.props}>{child.value}</{child.tag}>"
