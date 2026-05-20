@@ -1,5 +1,5 @@
 from htmlnode import *
-# from leafnode import LeafNode
+from leafnode import LeafNode
 
 class ParentNode(HTMLNode):
     def __init__(self, tag, children, props=None):
@@ -15,7 +15,8 @@ class ParentNode(HTMLNode):
         child_string = ''
         if self.children:
             for child in self.children:
-                child_string += f"<{child.tag} {child.props}>{child.value}</{child.tag}>"
-            full_string += f"<{self.tag} {self.props}>{child_string}</{self.tag}>"
+                # child_string += f"<{child.tag} {child.props}>{child.value}</{child.tag}>"
+                child_string += child.to_html()
+            full_string += f"<{self.tag}{self.props_to_html()}>{child_string}</{self.tag}>"
             return full_string
         
