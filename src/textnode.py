@@ -14,12 +14,12 @@ class TextNode:
         self.text_type = text_type
         self.url = url
 
-    def __hash__(self):
-        return hash((self.text, self.text_type, self.url))    
+    # def __hash__(self):
+    #     return hash((self.text, self.text_type, self.url))    
 
     def __eq__(self, other):
-        # if isinstance(other, TextNode):
-        #     return NotImplemented
+        if isinstance(other, TextNode):
+            return NotImplemented
         return (
             self.text == other.text 
             and self.text_type == other.text_type 
