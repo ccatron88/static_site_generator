@@ -14,8 +14,8 @@ class TextNode:
         self.text_type = text_type
         self.url = url
 
-    # def __hash__(self):
-    #     return hash((self.text, self.text_type, self.url))    
+    def __hash__(self):
+        return hash((self.text, self.text_type, self.url))    
 
     def __eq__(self, other):
         if isinstance(other, TextNode):
@@ -31,4 +31,6 @@ class TextNode:
 
     def text_node_to_html_node(text_node: TextNode) -> LeafNode:
         for type in TextType:
-            return
+            match type:
+                case "TEXT":
+                    return
