@@ -30,7 +30,7 @@ class TextNode:
     def __repr__(self):
         return f"TextNode({self.text}, {self.text_type.value}, {self.url})"
 
-def text_node_to_html_node(text_node: TextNode) -> LeafNode:
-    if not isinstance(text_node, TextNode):
-        raise TypeError("text_node is not type TextNode")
-    # return LeafNode(text_node.tag, text_node.value, text_node.props).to_html()
+    def text_node_to_html_node(text_node: TextNode) -> LeafNode:
+        if not isinstance(text_node, TextNode):
+            raise TypeError("text_node is not type TextNode")
+        return LeafNode(text_node.tag, text_node.value, text_node.props).to_html()
