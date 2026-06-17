@@ -26,4 +26,6 @@ class TestTextNode(unittest.TestCase):
 if __name__ == "__main__":
     unittest.main()
 
-#     When a user deletes a note, we'd like to flag it as deleted in the database.
+
+# Then create a screen that shows all the recently deleted notes.
+# From this screen, the user can undelete a note or permanently delete it.
