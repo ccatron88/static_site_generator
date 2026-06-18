@@ -27,5 +27,5 @@ if __name__ == "__main__":
     unittest.main()
 
 
-# Then create a screen that shows all the recently deleted notes.
+
 # From this screen, the user can undelete a note or permanently delete it.
