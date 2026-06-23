@@ -28,4 +28,4 @@ if __name__ == "__main__":
 
 
 
-# From this screen, the user can undelete a note or permanently delete it.
+# From this screen, the user can 
