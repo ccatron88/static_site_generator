@@ -30,4 +30,4 @@ if __name__ == "__main__":
 
 # nstalled Open WebUI but not sure where to start? 
 # The Essentials for Open WebUI guide covers the six things every new user needs to know: 
-# plugins, tool calling, task models, context management, RAG, and Open Terminal.
+# plugins, tool calling, task models, context 
