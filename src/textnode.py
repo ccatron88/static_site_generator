@@ -18,14 +18,22 @@ class TextNode:
     def __hash__(self):
         return hash((self.text, self.text_type, self.url))    
 
+    # def __eq__(self, other):
+    #     if isinstance(other, TextNode):
+    #         return NotImplemented
+    #     return (
+    #         self.text == other.text 
+    #         and self.text_type == other.text_type 
+    #         and self.url == other.url
+    #     )
     def __eq__(self, other):
         if isinstance(other, TextNode):
-            return NotImplemented
-        return (
-            self.text == other.text 
-            and self.text_type == other.text_type 
-            and self.url == other.url
-        )
+            return (
+                self.text == other.text 
+                and self.text_type == other.text_type 
+                and self.url == other.url
+            )
+        return NotImplemented
     
     def __repr__(self):
         return f"TextNode({self.text}, {self.text_type.value}, {self.url})"
@@ -33,4 +41,4 @@ class TextNode:
 def text_node_to_html_node(text_node: TextNode) -> LeafNode:
     if not isinstance(text_node, TextNode):
         raise TypeError("text_node is not type TextNode")
-    return LeafNode(text_node.tag, text_node.value, text_node.props).to_html()
+    return LeafNode(text_node.text_type, text_node.text, text_node.url)

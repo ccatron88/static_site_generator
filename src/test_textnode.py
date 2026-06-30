@@ -25,9 +25,3 @@ class TestTextNode(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
-
-
-# nstalled Open WebUI but not sure where to start? 
-# The Essentials for Open WebUI guide covers the six things every new user needs to know: 
-# plugins, tool calling, task models, context 
