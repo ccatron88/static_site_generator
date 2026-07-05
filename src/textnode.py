@@ -41,4 +41,7 @@ class TextNode:
 def text_node_to_html_node(text_node: TextNode) -> LeafNode:
     if not isinstance(text_node, TextNode):
         raise TypeError("text_node is not type TextNode")
-    return LeafNode(f"<{text_node.text_type}>", f"{text_node.text}", f"{text_node.url}")
+    if text_node.text_type == TextType.TEXT:
+        return LeafNode(None, {text_node.text})
+    elif text_node.text_type not in (TextType.LINK, TextType.IMAGE): 
+        return LeafNode(text_node.text_type, text_node.text)
