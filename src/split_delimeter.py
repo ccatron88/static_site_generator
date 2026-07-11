@@ -7,6 +7,8 @@ def split_nodes_delimeter(old_nodes: list[TextNode], delimeter: str, text_type: 
             split_list.extend(node)
         if node.count(delimeter) != 2:
             raise ValueError("Markdown characters require an open and closing delimeter (i.e. **word**)")
-        split_list.extend([node.split(sep=delimeter, maxsplit=2)])
+        temp_list = node.split(sep=delimeter, maxsplit=2)
+        for item in temp_list:
+            split_list.extend(item, item.TextType)
     return split_list
             
