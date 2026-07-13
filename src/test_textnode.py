@@ -59,9 +59,9 @@ class TestSplitDelimeter(unittest.TestCase):
         nodes = [TextNode("This is **bold text** to test.", TextType.TEXT)]
         split_node = split_nodes_delimeter(nodes, "**", TextType.TEXT)
         self.assertEqual(split_node, [
-            ["This is a ", TextType.TEXT],
-            ["bold text", TextType.BOLD],
-            [" to test.", TextType.TEXT],
+            TextNode("This is ", TextType.TEXT),
+            TextNode("bold text", TextType.BOLD),
+            TextNode(" to test.", TextType.TEXT),
         ])
 
 if __name__ == "__main__":
