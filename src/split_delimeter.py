@@ -20,6 +20,6 @@ def split_nodes_delimeter(old_nodes: list[TextNode], delimeter: str, text_type: 
                 elif delimeter == "_":
                     new_node = TextNode(item, TextType.ITALIC)
                     split_list.extend([new_node])
-            split_list.extend([item])
+            # split_list.extend([item])
     return split_list
             
