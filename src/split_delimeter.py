@@ -8,18 +8,18 @@ def split_nodes_delimeter(old_nodes: list[TextNode], delimeter: str, text_type: 
         if len(node.text.split(delimeter)) % 2 != 1:
             raise ValueError("Markdown characters require an open and closing delimeter (i.e. **word**)")
         temp_list = node.text.split(sep=delimeter, maxsplit=2)
-        for item in temp_list:
-            if item[0] is delimeter:
-                new_node = ""
-                if delimeter == "`":
-                    new_node = TextNode(item, TextType.CODE)
-                    split_list.extend([new_node])
-                elif delimeter == "**":
-                    new_node = TextNode(item, TextType.BOLD)
-                    split_list.extend([new_node])
-                elif delimeter == "_":
-                    new_node = TextNode(item, TextType.ITALIC)
-                    split_list.extend([new_node])
-            # split_list.extend([item])
+        # for item in temp_list:
+        #     if item[0] is delimeter:
+        #         new_node = ""
+        #         if delimeter == "`":
+        #             new_node = TextNode(item, TextType.CODE)
+        #             split_list.extend([new_node])
+        #         elif delimeter == "**":
+        #             new_node = TextNode(item, TextType.BOLD)
+        #             split_list.extend([new_node])
+        #         elif delimeter == "_":
+        #             new_node = TextNode(item, TextType.ITALIC)
+        #             split_list.extend([new_node])
+        #     split_list.extend([item])
     return split_list
             
