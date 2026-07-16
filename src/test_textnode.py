@@ -57,11 +57,20 @@ class TestTextNodeToHTMLNode(unittest.TestCase):
 class TestSplitDelimeter(unittest.TestCase):
     def test_split_case(self):
         nodes = [TextNode("This is **bold text** to test.", TextType.TEXT)]
-        split_node = split_nodes_delimeter(nodes, "**", TextType.TEXT)
+        split_node = split_nodes_delimeter(nodes, "**", TextType.BOLD)
         self.assertEqual(split_node, [
             TextNode("This is ", TextType.TEXT),
             TextNode("bold text", TextType.BOLD),
             TextNode(" to test.", TextType.TEXT),
+        ])
+
+    def test_delimeter_at_beginning(self):
+        node = [TextNode("_beginning italic_ sentence to test.", TextType.TEXT)]
+        split_node = split_nodes_delimeter(node, '_', TextType.ITALIC)
+        self.assertEqual(split_node, [
+            TextNode('', TextType.TEXT),
+            TextNode('beginning italic', TextType.ITALIC),
+            TextNode(' sentence to test.', TextType.TEXT),
         ])
 
 if __name__ == "__main__":
