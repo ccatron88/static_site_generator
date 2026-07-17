@@ -73,5 +73,14 @@ class TestSplitDelimeter(unittest.TestCase):
             TextNode(' sentence to test.', TextType.TEXT),
         ])
 
+    def test_two_delimited_sections(self):
+        node = [TextNode("Sentence with **two sections** that are _delimeted_ to test.", TextType.TEXT)]
+        split_node = split_nodes_delimeter(node, '**', TextType.BOLD)
+        self.assertEqual(split_node, [
+            TextNode("Sentence with ", TextType.TEXT),
+            TextNode("two sections", TextType.BOLD),
+            TextNode(" that are _delimeted_ to test.", TextType.TEXT),
+        ])
+
 if __name__ == "__main__":
     unittest.main()

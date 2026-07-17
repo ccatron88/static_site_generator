@@ -18,37 +18,3 @@ def split_nodes_delimeter(old_nodes: list[TextNode], delimeter: str, text_type: 
                     temp_list.append(TextNode(split_str[i], text_type))
             split_list.extend(temp_list)
     return split_list
-
-
-
-    #     temp_list = node.text.split(sep=delimeter, maxsplit=2)
-    #     for item in temp_list:
-    #         if item[0] is delimeter:
-    #             new_node = ""
-    #             if delimeter == "`":
-    #                 new_node = TextNode(item, TextType.CODE)
-    #                 split_list.extend([new_node])
-    #             elif delimeter == "**":
-    #                 new_node = TextNode(item, TextType.BOLD)
-    #                 split_list.extend([new_node])
-    #             elif delimeter == "_":
-    #                 new_node = TextNode(item, TextType.ITALIC)
-    #                 split_list.extend([new_node])
-    #         split_list.extend([item])
-    # return split_list
-            
-# node = TextNode(split_str[i], TextType.TEXT)
-# temp_list.append(node)
-
-# if delimeter == "`":
-#     # node = TextNode(split_str[i], TextType.CODE)
-#     # temp_list.append(node)
-#     temp_list.append(TextNode(split_str[i], TextType.CODE))
-# elif delimeter == "**":
-#     # node = TextNode(split_str[i], TextType.BOLD)
-#     # temp_list.append(node)
-#     temp_list.append(TextNode(split_str[i], TextType.BOLD))
-# elif delimeter == "_":
-#     # node = TextNode(split_str[i], TextType.ITALIC)
-#     # temp_list.append(node)
-#     temp_list.append(TextNode(split_str[i], TextType.ITALIC))
