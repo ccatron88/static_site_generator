@@ -2,5 +2,12 @@ from textnode import TextNode, TextType
 import re
 
 def extract_markdown_images(text):
-    images_re = re.findall(r"\[([A-Za-z]w+)\]\(w+\)", text)
-    return images_re
+    # img_tuples = []
+    # img_alt_txt = re.findall(r"\[([\w+ ]+)\]", text)
+    # img_url = re.findall(r"\w+\:\/\/[\/\w.]+", text)
+
+    # img_tuples.append((img_alt_txt[0], img_url[0]))
+
+    img_list = re.findall(r"\[(\w+ )\]\(\w+\:\/\/\w.+", text)
+
+    return img_list
