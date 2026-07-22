@@ -1,8 +1,8 @@
 import unittest
 
 from textnode import TextNode, TextType, text_node_to_html_node
-from split_delimeter import split_nodes_delimeter
-from markdown_extractions import extract_markdown_images
+from split_data import split_nodes_delimeter
+from markdown_extractions import extract_markdown_images, extract_markdown_links
 
 
 class TestTextNode(unittest.TestCase):
@@ -83,18 +83,31 @@ class TestSplitDelimeter(unittest.TestCase):
             TextNode(" that are _delimeted_ to test.", TextType.TEXT),
         ])
 
-class TestRegexExtraction(unittest.TestCase):
+class TestRegexImageExtraction(unittest.TestCase):
     def test_extract_markdown_images(self):
         matches = extract_markdown_images(
             "This is text with an ![image](https://i.imgur.com/zjjcJKZ.png)"
         )
         self.assertListEqual([("image", "https://i.imgur.com/zjjcJKZ.png")], matches)
 
-    # def test_extract_two_markdown_images(self):
-    #     matches = extract_markdown_images(
-    #         "This is text with an ![image](https://i.imgur.com/zjjcJKZ.png) and ![rick roll](https://i.imgur.com/abzjjcJKZ.png)"
-    #     )
-    #     self.assertListEqual([("image", "https://i.imgur.com/zjjcJKZ.png"), ("rick roll", "https://i.imgur.com/abzjjcJKZ.png")], matches)
+    def test_extract_two_markdown_images(self):
+        matches = extract_markdown_images(
+            "This is text with an ![image](https://i.imgur.com/zjjcJKZ.png) and ![rick roll](https://i.imgur.com/abzjjcJKZ.png)"
+        )
+        self.assertListEqual([("image", "https://i.imgur.com/zjjcJKZ.png"), ("rick roll", "https://i.imgur.com/abzjjcJKZ.png")], matches)
+
+class TestRegexLinkExtraction(unittest.TestCase):
+    def test_extract_markdown_links(self):
+        matches = extract_markdown_links(
+            "This is text with a link [to boot dev](https://www.boot.dev)"
+        )
+        self.assertListEqual([("to boot dev", "https://www.boot.dev")], matches)
+
+    def test_extract_skips_images(self):
+        matches = extract_markdown_links(
+            "This is not a link ![link to google](https://google.com)"
+        )
+        self.assertEqual([("link to google", "https://google.com")], matches)
 
 if __name__ == "__main__":
     unittest.main()
