@@ -20,12 +20,12 @@ def split_nodes_delimeter(old_nodes: list[TextNode], delimeter: str, text_type: 
             split_list.extend(temp_list)
     return split_list
 
-    def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]:
-        split_list = []
-        for node in old_nodes:
-            if node.text_type != TextType.TEXT:
-                split_list.append(node)
-        return split_list
+def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]:
+    split_list = []
+    for node in old_nodes:
+        if node.text_type != TextType.TEXT:
+            split_list.append(node)
+    return split_list
 
-    def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
-        return
+def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
+    return
