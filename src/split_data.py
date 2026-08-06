@@ -38,6 +38,6 @@ def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
             split_list.append(node)
         if extract_markdown_links(node):
             extracted_link = extract_markdown_links(node)
-            if extracted_link:
-                split_list.append(node.split(extracted_link))
+            # if extracted_link:
+            #     split_list.append(node.split(extracted_link))
         return
