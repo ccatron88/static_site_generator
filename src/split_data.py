@@ -23,8 +23,8 @@ def split_nodes_delimeter(old_nodes: list[TextNode], delimeter: str, text_type: 
 def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]:
     split_list = []
     for node in old_nodes:
-        # if node.text_type != TextType.TEXT:
-        #     split_list.append(node)
+        if node.text_type != TextType.TEXT:
+            split_list.append(node)
         if extract_markdown_images(node):
             extracted_image = extract_markdown_images(node)
             if extracted_image:
