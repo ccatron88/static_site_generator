@@ -32,7 +32,7 @@ def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]:
     return split_list
 
 def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
-    split_list = []
+    # split_list = []
     for node in old_nodes:
         # Need to customize to differentiate from split_nodes_image
         if node.text_type != TextType.TEXT:
