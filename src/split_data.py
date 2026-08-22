@@ -21,22 +21,22 @@ def split_nodes_delimeter(old_nodes: list[TextNode], delimeter: str, text_type: 
     return split_list
 
 def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]:
-    # split_list = []
+    split_list = []
     for node in old_nodes:
-        # if node.text_type != TextType.TEXT:
-        #     split_list.append(node)
+        if node.text_type != TextType.TEXT:
+            split_list.append(node)
+            continue
         if extract_markdown_images(node):
             extracted_image = extract_markdown_images(node)
-            if extracted_image:
-                split_list.append(node.split(extracted_image))
+            split_list.append(extracted_image.split(1))
     return split_list
 
 def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
-    # split_list = []
+    split_list = []
     for node in old_nodes:
-        # Need to customize to differentiate from split_nodes_image
         if node.text_type != TextType.TEXT:
             split_list.append(node)
+            continue
         if extract_markdown_links(node):
             extracted_link = extract_markdown_links(node)
             if extracted_link:
