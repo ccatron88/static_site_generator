@@ -28,7 +28,7 @@ def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]:
             continue
         if extract_markdown_images(node):
             extracted_image = extract_markdown_images(node)
-            split_list.append(extracted_image.split(1))
+            # split_list.append(extracted_image.split(1))
     return split_list
 
 def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
