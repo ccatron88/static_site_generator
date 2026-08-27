@@ -17,7 +17,7 @@ def split_nodes_delimeter(old_nodes: list[TextNode], delimeter: str, text_type: 
                     temp_list.append(TextNode(split_str[i], TextType.TEXT))
                 else:
                     temp_list.append(TextNode(split_str[i], text_type))
-            split_list.extend(temp_list)
+            # split_list.extend(temp_list)
     return split_list
 
 def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]:
