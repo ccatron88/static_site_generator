@@ -13,11 +13,13 @@ def split_nodes_delimeter(old_nodes: list[TextNode], delimeter: str, text_type: 
             split_str = node.text.split(delimeter)
             temp_list = []
             for i in range(0, len(split_str)):
+                if split_str[i] == "":
+                    continue
                 if i % 2 == 0:
                     temp_list.append(TextNode(split_str[i], TextType.TEXT))
                 else:
                     temp_list.append(TextNode(split_str[i], text_type))
-            # split_list.extend(temp_list)
+            split_list.extend(temp_list)
     return split_list
 
 def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]:
@@ -28,7 +30,7 @@ def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]:
             continue
         if extract_markdown_images(node):
             extracted_image = extract_markdown_images(node)
-            # split_list.append(extracted_image.split(1))
+            split_list.append(extracted_image.split(1))
     return split_list
 
 def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
