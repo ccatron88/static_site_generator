@@ -32,9 +32,9 @@ def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]:
         extracted_list = []
         for i in range(0, len(extracted_images)):
             str_text = node.text.split(extracted_images, 1)
-            # for item in str_text:
-            #     extracted_list.append(item, TextNode.text_type)
-            extracted_list.append(str_text[0], TextType.TEXT)
+            for item in str_text:
+                extracted_list.append(item, TextNode.text_type)
+            # extracted_list.append(str_text[0], TextType.TEXT)
             # extracted_list.append(extracted_images[i,0], TextType.TEXT)
             # extracted_list.append(extracted_images[i,1], TextType.IMAGE)
             # extracted_list.append(str_text[2], TextType.TEXT)
