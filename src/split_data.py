@@ -36,7 +36,7 @@ def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]:
                 extracted_list.append(item, TextNode.text_type)
             # extracted_list.append(str_text[0], TextType.TEXT)
             # extracted_list.append(extracted_images[i,0], TextType.TEXT)
-            # extracted_list.append(extracted_images[i,1], TextType.IMAGE)
+            extracted_list.append(extracted_images[i,1], TextType.IMAGE)
             extracted_list.append(str_text[2], TextType.TEXT)
         images_list.append(extracted_list)
     return images_list
