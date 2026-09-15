@@ -30,14 +30,17 @@ def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]:
             continue
         extracted_images = extract_markdown_images(node.text)
         extracted_list = []
+
+        for i in range(0, len(extracted_images)):
+            str_text = node.text.split(extract_string, 1)
+
         for i in range(0, len(extracted_images)):
             extract_string = (f"![{extracted_images[i][0]}]({extracted_images[i][1]})")
             str_text = node.text.split(extract_string, 1)
-            
+
             extracted_list.append([
-                (str_text[0], TextType.TEXT),
-                (str_text[1], TextType.IMAGE)
-                (str_text[2], TextType.TEXT)
+                TextNode(str_text[0], TextType.TEXT),
+                TextNode(str_text[1], TextType.IMAGE, extracted_images[i][1]),
             ])
 
         images_list.append(extracted_list)
