@@ -18,14 +18,6 @@ class TextNode:
     def __hash__(self):
         return hash((self.text, self.text_type, self.url))    
 
-    # def __eq__(self, other):
-    #     if isinstance(other, TextNode):
-    #         return NotImplemented
-    #     return (
-    #         self.text == other.text 
-    #         and self.text_type == other.text_type 
-    #         and self.url == other.url
-    #     )
     def __eq__(self, other):
         if isinstance(other, TextNode):
             return (
