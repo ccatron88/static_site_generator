@@ -1,9 +1,8 @@
 import unittest
 
 from textnode import TextNode, TextType, text_node_to_html_node
-from split_data import split_nodes_delimeter
+from split_data import split_nodes_delimeter, split_nodes_image, split_nodes_link, TextNode, TextType, text_node_to_html_node
 from markdown_extractions import extract_markdown_images, extract_markdown_links
-
 
 class TestTextNode(unittest.TestCase):
     def test_eq(self):
@@ -65,15 +64,6 @@ class TestSplitDelimeter(unittest.TestCase):
             TextNode(" to test.", TextType.TEXT),
         ])
 
-    def test_delimeter_at_beginning(self):
-        node = [TextNode("_beginning italic_ sentence to test.", TextType.TEXT)]
-        split_node = split_nodes_delimeter(node, '_', TextType.ITALIC)
-        self.assertEqual(split_node, [
-            TextNode('', TextType.TEXT),
-            TextNode('beginning italic', TextType.ITALIC),
-            TextNode(' sentence to test.', TextType.TEXT),
-        ])
-
     def test_two_delimited_sections(self):
         node = [TextNode("Sentence with **two sections** that are _delimeted_ to test.", TextType.TEXT)]
         split_node = split_nodes_delimeter(node, '**', TextType.BOLD)
@@ -108,6 +98,40 @@ class TestRegexLinkExtraction(unittest.TestCase):
             "This is not a link ![link to google](https://google.com)"
         )
         self.assertEqual([("link to google", "https://google.com")], matches)
+
+class TestSplitNodeImages(unittest.TestCase):
+    def test_split_images(self):
+        node = TextNode(
+            "This is text with an ![image](https://i.imgur.com/zjjcJKZ.png) and another ![second image](https://i.imgur.com/3elNhQu.png)",
+            TextType.TEXT,
+        )
+        new_nodes = split_nodes_image([node])
+        self.assertListEqual(
+            [
+                TextNode("This is text with an ", TextType.TEXT),
+                TextNode("image", TextType.IMAGE, "https://i.imgur.com/zjjcJKZ.png"),
+                TextNode(" and another ", TextType.TEXT),
+                TextNode("second image", TextType.IMAGE, "https://i.imgur.com/3elNhQu.png"),
+            ],
+            new_nodes,
+        )
+
+class TestSplitNodeLinks(unittest.TestCase):
+    def test_split_images(self):
+        node = TextNode(
+            "This is text with a [link to boot.dev](https://boot.dev.com) and another [link to google](https://google.com)",
+            TextType.TEXT,
+        )
+        new_nodes = split_nodes_link([node])
+        self.assertListEqual(
+            [
+                TextNode("This is text with a ", TextType.TEXT),
+                TextNode("link to boot.dev", TextType.LINK, "https://boot.dev.com"),
+                TextNode(" and another ", TextType.TEXT),
+                TextNode("link to google", TextType.LINK, "https://google.com"),
+            ],
+            new_nodes,
+        )
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,5 +1,5 @@
 from textnode import TextNode, TextType, text_node_to_html_node
-from markdown_extractions import *
+from markdown_extractions import extract_markdown_links, extract_markdown_images
 
 def split_nodes_delimeter(old_nodes: list[TextNode], delimeter: str, text_type: TextType) -> list[TextNode]:
     split_list = []
@@ -30,38 +30,56 @@ def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]:
             continue
         extracted_images = extract_markdown_images(node.text)
         remaining_text = node.text
-        extracted_list = []
 
         for i in range(0, len(extracted_images)):
             extract_string = (f"![{extracted_images[i][0]}]({extracted_images[i][1]})")
             str_text = remaining_text.split(extract_string, 1)
 
             if str_text[0] != "":
-                extracted_list.append(TextNode(str_text[0], TextType.TEXT))
-            extracted_list.append(TextNode(extracted_images[i][0], TextType.IMAGE, extracted_images[i][1]))
+                images_list.append(TextNode(str_text[0], TextType.TEXT))
+            images_list.append(TextNode(extracted_images[i][0], TextType.IMAGE, extracted_images[i][1]))
 
             remaining_text = str_text[1]
+
         if remaining_text:
-            extracted_list.append(TextNode(remaining_text, TextType.TEXT))
-        images_list.extend(extracted_list)
+            images_list.append(TextNode(remaining_text, TextType.TEXT))
     return images_list
 
 def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
-    split_list = []
+    links_list = []
     for node in old_nodes:
         if node.text_type != TextType.TEXT:
-            split_list.append(node)
+            links_list.append(node)
             continue
-        if extract_markdown_links(node):
-            extracted_link = extract_markdown_links(node)
-            if extracted_link:
-                split_list.append(node.split(extracted_link))
-        return split_list
+        extracted_links = extract_markdown_links(node.text)
+        remaining_text = node.text
 
+        for i in range(0, len(extracted_links)):
+            extract_string = (f"[{extracted_links[i][0]}]({extracted_links[i][1]})")
+            str_text = remaining_text.split(extract_string, 1)
 
-# for item in str_text:
-            #     extracted_list.append(item, TextNode.text_type)
-            #     extracted_list.append(str_text[0], TextType.TEXT)
-            #     extracted_list.append(extracted_images[i,0], TextType.TEXT)
-            #     extracted_list.append(extracted_images[i,1], TextType.IMAGE)
-            #     extracted_list.append(str_text[2], TextType.TEXT)
+            if str_text[0] != "":
+                links_list.append(TextNode(str_text[0], TextType.TEXT))
+            links_list.append(TextNode(extracted_links[i][0], TextType.LINK, extracted_links[i][1]))
+
+            remaining_text = str_text[1]
+
+        if remaining_text:
+            links_list.append(TextNode(remaining_text, TextType.TEXT))
+    return links_list
+
+def text_to_textnodes(text):
+    textNodes = [TextNode(text, TextType.TEXT)]
+    delimiters_list = [
+        ("**", TextType.BOLD),
+        ("_", TextType.ITALIC),
+        ("`", TextType.CODE)
+        ]
+
+    for i in range(0, len(delimiters_list)):
+        textNodes = split_nodes_delimeter(textNodes, delimiters_list[i][0], delimiters_list[i][1])
+
+    textNodes = split_nodes_image(textNodes)
+    textNodes =split_nodes_link(textNodes)
+
+    return textNodes
