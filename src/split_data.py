@@ -68,18 +68,18 @@ def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
             links_list.append(TextNode(remaining_text, TextType.TEXT))
     return links_list
 
-def text_to_textnodes(text):
-    textNodes = [TextNode(text, TextType.TEXT)]
-    delimiters_list = [
-        ("**", TextType.BOLD),
-        ("_", TextType.ITALIC),
-        ("`", TextType.CODE)
-        ]
+# def text_to_textnodes(text):
+#     textNodes = [TextNode(text, TextType.TEXT)]
+#     delimiters_list = [
+#         ("**", TextType.BOLD),
+#         ("_", TextType.ITALIC),
+#         ("`", TextType.CODE)
+#         ]
 
-    for i in range(0, len(delimiters_list)):
-        textNodes = split_nodes_delimeter(textNodes, delimiters_list[i][0], delimiters_list[i][1])
+#     for i in range(0, len(delimiters_list)):
+#         textNodes = split_nodes_delimeter(textNodes, delimiters_list[i][0], delimiters_list[i][1])
 
-    textNodes = split_nodes_image(textNodes)
-    textNodes =split_nodes_link(textNodes)
+#     textNodes = split_nodes_image(textNodes)
+#     textNodes =split_nodes_link(textNodes)
 
-    return textNodes
+#     return textNodes
