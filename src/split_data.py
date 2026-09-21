@@ -68,8 +68,8 @@ def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
             links_list.append(TextNode(remaining_text, TextType.TEXT))
     return links_list
 
-# def text_to_textnodes(text):
-#     textNodes = [TextNode(text, TextType.TEXT)]
+def text_to_textnodes(text):
+    textNodes = [TextNode(text, TextType.TEXT)]
 #     delimiters_list = [
 #         ("**", TextType.BOLD),
 #         ("_", TextType.ITALIC),
@@ -82,4 +82,4 @@ def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
 #     textNodes = split_nodes_image(textNodes)
 #     textNodes =split_nodes_link(textNodes)
 
-#     return textNodes
+    return textNodes
