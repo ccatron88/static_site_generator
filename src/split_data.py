@@ -79,7 +79,7 @@ def text_to_textnodes(text):
 #     for i in range(0, len(delimiters_list)):
 #         textNodes = split_nodes_delimeter(textNodes, delimiters_list[i][0], delimiters_list[i][1])
 
-#     textNodes = split_nodes_image(textNodes)
-#     textNodes =split_nodes_link(textNodes)
+    textNodes = split_nodes_image(textNodes)
+    textNodes =split_nodes_link(textNodes)
 
     return textNodes
