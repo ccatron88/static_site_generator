@@ -134,7 +134,7 @@ class TestSplitNodeLinks(unittest.TestCase):
         )
 
 class TestSplitBlocks(unittest.TestCase):
-    def test_markdown_to_blocks(self):
+    # def test_markdown_to_blocks(self):
 #         md = """
 # This is **bolded** paragraph
 
