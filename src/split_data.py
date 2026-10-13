@@ -89,5 +89,6 @@ def markdown_to_blocks(markdown):
 
     for item in block_strings:
         item = item.strip()
-
-    # return block_strings
+        block_strings.append(item)
+        
+    return block_strings
