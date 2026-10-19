@@ -88,6 +88,7 @@ def markdown_to_blocks(markdown):
     block_strings = (markdown.split('\n\n', 1))
 
     for item in block_strings:
-        # block_strings[item] = item.strip()   
+        block_strings[item] = item.strip()
+    # Fill in
 
     return block_strings
