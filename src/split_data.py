@@ -90,7 +90,7 @@ def markdown_to_blocks(markdown):
 
     # Strip ending of blocks for array
     for item in block_strings:
-        # block_strings[item] = item.strip()
+        block_strings[item] = item.strip()
         block_array.append(item.strip())
 
     return block_strings
