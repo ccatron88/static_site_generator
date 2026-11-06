@@ -86,12 +86,8 @@ def text_to_textnodes(text):
 
 def markdown_to_blocks(markdown):
     block_strings = (markdown.split('\n\n', 1))
-    block_array = []
 
-    # Strip ending of blocks for array
-    # then add the blocks
-    for item in block_strings:
-        # block_strings[item] = item.strip()
-        # block_array.append(item.strip())
+    for i in range(len(block_strings)):
+        block_strings[i] = block_strings[i].strip()
 
-        return block_strings
+    return block_strings
