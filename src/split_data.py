@@ -92,4 +92,4 @@ def markdown_to_blocks(markdown):
     for i in range(len(block_strings)):
         block_strings[i] = block_strings[i].strip()
 
-        return block_strings
+        # return block_strings
