@@ -1,5 +1,14 @@
 from textnode import TextNode, TextType, text_node_to_html_node
 from markdown_extractions import extract_markdown_links, extract_markdown_images
+from enum import Enum
+
+class BlockType(Enum):
+    PARAGRAPH = "paragraph"
+    HEADING = "heading"
+    CODE = "code"
+    QUOTE = "quote"
+    UNORDERED_LIST = "unordered list"
+    ORDERED_LIST = "ordered list"
 
 def split_nodes_delimeter(old_nodes: list[TextNode], delimeter: str, text_type: TextType) -> list[TextNode]:
     split_list = []
@@ -85,12 +94,18 @@ def text_to_textnodes(text):
     return textNodes
 
 def markdown_to_blocks(markdown):
-    block_strings = (markdown.split('\n\n', 1))
+    block_strings = (markdown.split('\n\n'))
     markdown_blocks = []
 
     # Loop through blocks with
     # range instead of for...in
     for i in range(len(block_strings)):
-        markdown_blocks.append(block_strings[i].strip())
+        stripped_block = block_strings[i].strip()
+        markdown_blocks.append(stripped_block)
 
-    return block_strings
+    return markdown_blocks
+
+def block_to_block_type(markdown):
+    block_type = ""
+
+    return block_type
