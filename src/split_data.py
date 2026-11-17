@@ -1,6 +1,7 @@
 from textnode import TextNode, TextType, text_node_to_html_node
 from markdown_extractions import extract_markdown_links, extract_markdown_images
 from enum import Enum
+import re
 
 class BlockType(Enum):
     PARAGRAPH = "paragraph"
@@ -107,5 +108,10 @@ def markdown_to_blocks(markdown):
 
 def block_to_block_type(markdown):
     block_type = ""
+
+    if re.match(r"#{1,6}", markdown):
+        block_type = "PARAGRAPH"
+    if markdown.startswith("```") and markdown.endswith("```"):
+        block_type = "CODE"    
 
     return block_type
