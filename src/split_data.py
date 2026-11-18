@@ -8,8 +8,8 @@ class BlockType(Enum):
     HEADING = "heading"
     CODE = "code"
     QUOTE = "quote"
-    UNORDERED_LIST = "unordered list"
-    ORDERED_LIST = "ordered list"
+    UNORDERED_LIST = "unordered_list"
+    ORDERED_LIST = "ordered_list"
 
 def split_nodes_delimeter(old_nodes: list[TextNode], delimeter: str, text_type: TextType) -> list[TextNode]:
     split_list = []
@@ -98,8 +98,6 @@ def markdown_to_blocks(markdown):
     block_strings = (markdown.split('\n\n'))
     markdown_blocks = []
 
-    # Loop through blocks with
-    # range instead of for...in
     for i in range(len(block_strings)):
         stripped_block = block_strings[i].strip()
         markdown_blocks.append(stripped_block)
@@ -109,9 +107,9 @@ def markdown_to_blocks(markdown):
 def block_to_block_type(markdown):
     block_type = ""
 
-    if re.match(r"#{1,6}", markdown):
-        block_type = "PARAGRAPH"
-    if markdown.startswith("```") and markdown.endswith("```"):
-        block_type = "CODE"    
+    if re.match(r"^#{1,6} .+", markdown):
+        block_type = BlockType.HEADING
+    elif markdown.startswith("```\n") and markdown.endswith("```"):
+        block_type = BlockType.CODE   
 
     return block_type
