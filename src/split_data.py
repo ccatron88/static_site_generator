@@ -111,8 +111,8 @@ def block_to_block_type(markdown):
     if len(lines) == 1:
         if re.match(r"^#{1,6} .+", lines[0]):
             block_type = BlockType.HEADING
-    elif len(lines) > 1:
-        if lines[0].startswith("```") and lines[-1].endswith("```"):
-            block_type = BlockType.CODE
-
+    elif len(lines) > 1 and lines[0].startswith("```") and lines[-1].endswith("```"):
+        block_type = BlockType.CODE
+    elif all(line.startswith(">") for line in lines):
+        block_type = BlockType.QUOTE
     return block_type
