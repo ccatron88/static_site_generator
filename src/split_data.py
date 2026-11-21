@@ -107,6 +107,7 @@ def markdown_to_blocks(markdown):
 def block_to_block_type(markdown):
     block_type = ""
     lines = markdown.split("\n")
+    ordered_list_re = re.match(r"[1-9]+.")
 
     if len(lines) == 1:
         if re.match(r"^#{1,6} .+", lines[0]):
@@ -115,4 +116,8 @@ def block_to_block_type(markdown):
         block_type = BlockType.CODE
     elif all(line.startswith(">") for line in lines):
         block_type = BlockType.QUOTE
+    elif all(line.startswith("- ") for line in lines):
+            block_type = BlockType.UNORDERED_LIST
+        
+
     return block_type
