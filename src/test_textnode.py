@@ -1,7 +1,7 @@
 import unittest
 
 from textnode import TextNode, TextType, text_node_to_html_node
-from split_data import split_nodes_delimeter, split_nodes_image, split_nodes_link, TextNode, TextType, text_node_to_html_node, markdown_to_blocks
+from split_data import *
 from markdown_extractions import extract_markdown_images, extract_markdown_links
 
 class TestTextNode(unittest.TestCase):
@@ -153,6 +153,11 @@ This is the same paragraph on a new line
                 "- This is a list\n- with items",
             ],
         )
+
+class TestBlockToBlockType(unittest.TestCase):
+    def test_heading(self):
+        block = "# This is a heading"
+        self.assertEqual(block_to_block_type(block), BlockType.HEADING)
 
 if __name__ == "__main__":
     unittest.main()
