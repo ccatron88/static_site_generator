@@ -107,17 +107,18 @@ def markdown_to_blocks(markdown):
 def block_to_block_type(markdown):
     block_type = ""
     lines = markdown.split("\n")
-    ordered_list_re = re.match(r"[1-9]+.")
 
-    if len(lines) == 1:
-        if re.match(r"^#{1,6} .+", lines[0]):
-            block_type = BlockType.HEADING
+    if len(lines) == 1 and re.match(r"^#{1,6} .+", lines[0]):
+        block_type = BlockType.HEADING
     elif len(lines) > 1 and lines[0].startswith("```") and lines[-1].endswith("```"):
         block_type = BlockType.CODE
     elif all(line.startswith(">") for line in lines):
         block_type = BlockType.QUOTE
     elif all(line.startswith("- ") for line in lines):
             block_type = BlockType.UNORDERED_LIST
-        
+    elif all(line.startswith(f"{i}. ") for i, line in enumerate(lines, start=1)):
+        block_type = BlockType.ORDERED_LIST
+    else:
+        block_type = BlockType.PARAGRAPH
 
     return block_type
