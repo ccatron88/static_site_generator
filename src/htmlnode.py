@@ -21,7 +21,7 @@ class HTMLNode:
     def __repr__(self):
         return (f"HTMLNode({self.tag}, {self.value}, children: {self.children}, {self.props})")
 
-    # def markdown_to_html_node(markdown):
-
+    def markdown_to_html_node(markdown):
+        split_markdown = markdown.split("\n")
         
-    #     return
+        return
