@@ -1,4 +1,4 @@
-
+from split_data import block_to_block_type
 class HTMLNode:
 
     def __init__(self, tag=None, value=None, children=None, props=None):
@@ -22,6 +22,7 @@ class HTMLNode:
         return (f"HTMLNode({self.tag}, {self.value}, children: {self.children}, {self.props})")
 
     def markdown_to_html_node(markdown):
-        # split_markdown = markdown.split("\n")
+        split_markdown = block_to_block_type(markdown)
+
         
         return
